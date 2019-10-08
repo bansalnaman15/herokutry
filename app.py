@@ -1,11 +1,12 @@
-from flask import Flask
+
+from flask import Flask,request
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
 mail=Mail(app)
 
-app.config['MAIL_SERVER']='smtp.googlemail.com'
-app.config['MAIL_PORT'] = 587
+app.config['MAIL_SERVER']='localhost'
+app.config['MAIL_PORT'] = 8062
 app.config['MAIL_USERNAME'] = 'nanchalchadwani@gmail.com'
 app.config['MAIL_PASSWORD'] = 'Mayank123'
 app.config['MAIL_USE_TLS'] = True
@@ -21,6 +22,10 @@ def index():
 @app.route('/')
 def hello():
     return "Hello World!"
+
+@app.route('/url')
+def url():
+    return request.host_url;
 
 
 
